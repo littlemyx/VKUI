@@ -15,16 +15,11 @@ const Example = withPlatform(({ platform }) => {
           >
             Плейлисты
           </Header>
-          <Header
-            mode="primary"
-            aside={
-              <Link>
-                Показать все{platform === VKCOM && <Icon12ChevronOutline />}
-              </Link>
-            }
-            subtitle="SOHN — Conrad"
-          >
-            Плейлисты
+          <Header mode="primary" subtitle="SOHN — Conrad">
+            Primary
+          </Header>
+          <Header mode="secondary" subtitle="SOHN — Conrad">
+            Secondary
           </Header>
           <Header
             mode="primary"

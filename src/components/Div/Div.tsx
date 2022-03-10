@@ -1,8 +1,9 @@
 import * as React from "react";
-import { getClassName } from "../../helpers/getClassName";
+import { classNamesString } from "../../lib/classNames";
+import { IOS } from "../../lib/platform";
 import { usePlatform } from "../../hooks/usePlatform";
 import { HasRootRef } from "../../types";
-import "./Div.css";
+import styles from "./Div.module.css";
 
 export interface DivProps
   extends React.HTMLAttributes<HTMLDivElement>,
@@ -11,6 +12,7 @@ export interface DivProps
 export const Div: React.FC<DivProps> = ({
   children,
   getRootRef,
+  className,
   ...restProps
 }) => {
   const platform = usePlatform();
@@ -18,7 +20,11 @@ export const Div: React.FC<DivProps> = ({
     <div
       {...restProps}
       ref={getRootRef}
-      vkuiClass={getClassName("Div", platform)}
+      className={classNamesString(
+        styles.Div,
+        platform === IOS && styles["Div--ios"],
+        className
+      )}
     >
       {children}
     </div>
