@@ -66,27 +66,28 @@ const PanelHeaderIn: React.FC<PanelHeaderProps> = ({
   );
 };
 
-const PanelHeader: React.FC<PanelHeaderProps> = (props: PanelHeaderProps) => {
-  const {
-    left,
-    children,
-    right,
-    separator,
-    visor,
-    transparent,
-    shadow,
-    getRef,
-    getRootRef,
-    sizeX,
-    sizeY,
-    fixed,
-    ...restProps
-  } = props;
+const PanelHeader: React.FC<PanelHeaderProps> = ({
+  left,
+  children,
+  right,
+  separator,
+  visor,
+  transparent,
+  shadow,
+  getRef,
+  getRootRef,
+  sizeX,
+  sizeY,
+  fixed,
+  ...restProps
+}) => {
   const platform = usePlatform();
   const { webviewType } = React.useContext(ConfigProviderContext);
   const { isInsideModal } = React.useContext(ModalRootContext);
   const needShadow = shadow && sizeX === SizeType.REGULAR;
   let isFixed = fixed !== undefined ? fixed : platform !== Platform.VKCOM;
+
+  const innerProps = { children, left, right };
 
   return (
     <div
@@ -115,10 +116,10 @@ const PanelHeader: React.FC<PanelHeaderProps> = (props: PanelHeaderProps) => {
           vertical="top"
           getRootRef={getRef}
         >
-          <PanelHeaderIn {...props} />
+          <PanelHeaderIn {...innerProps} />
         </FixedLayout>
       ) : (
-        <PanelHeaderIn {...props} />
+        <PanelHeaderIn {...innerProps} />
       )}
       {separator && visor && platform !== VKCOM && (
         <Separator
