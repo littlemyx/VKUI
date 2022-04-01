@@ -70,9 +70,9 @@ const PanelHeader: React.FC<PanelHeaderProps> = ({
   left,
   children,
   right,
-  separator,
-  visor,
-  transparent,
+  separator = true,
+  visor = true,
+  transparent = false,
   shadow,
   getRef,
   getRootRef,
@@ -129,12 +129,6 @@ const PanelHeader: React.FC<PanelHeaderProps> = ({
       )}
     </div>
   );
-};
-
-PanelHeader.defaultProps = {
-  separator: true,
-  transparent: false,
-  visor: true,
 };
 
 // eslint-disable-next-line import/no-default-export
