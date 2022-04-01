@@ -2,7 +2,7 @@ import * as React from "react";
 import { usePlatform } from "../../hooks/usePlatform";
 import { HasRef } from "../../types";
 import { VKCOM } from "../../lib/platform";
-import PanelHeader, { PanelHeaderProps } from "../PanelHeader/PanelHeader";
+import { PanelHeader, PanelHeaderProps } from "../PanelHeader/PanelHeader";
 import Separator from "../Separator/Separator";
 import { useAdaptivity } from "../../hooks/useAdaptivity";
 import { classNames } from "../../lib/classNames";
