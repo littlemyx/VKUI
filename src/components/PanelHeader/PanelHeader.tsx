@@ -26,6 +26,10 @@ export interface PanelHeaderProps
     HasRootRef<HTMLDivElement>,
     AdaptivityProps {
   left?: React.ReactNode;
+  after?: React.ReactNode;
+  /**
+   * @deprecated Будет удалено в 5.0.0. Используйте `after`
+   */
   right?: React.ReactNode;
   separator?: boolean;
   transparent?: boolean;
@@ -43,7 +47,7 @@ export interface PanelHeaderProps
 const PanelHeaderIn: React.FC<PanelHeaderProps> = ({
   children,
   left,
-  right,
+  after,
 }) => {
   const { webviewType } = React.useContext(ConfigProviderContext);
   const { isInsideModal } = React.useContext(ModalRootContext);
@@ -59,8 +63,8 @@ const PanelHeaderIn: React.FC<PanelHeaderProps> = ({
           <span vkuiClass="PanelHeader__content-in">{children}</span>
         )}
       </div>
-      <div vkuiClass="PanelHeader__right">
-        {(webviewType === WebviewType.INTERNAL || isInsideModal) && right}
+      <div vkuiClass="PanelHeader__after">
+        {(webviewType === WebviewType.INTERNAL || isInsideModal) && after}
       </div>
     </TooltipContainer>
   );
@@ -69,6 +73,7 @@ const PanelHeaderIn: React.FC<PanelHeaderProps> = ({
 const PanelHeader: React.FC<PanelHeaderProps> = ({
   left,
   children,
+  after: propsAfter,
   right,
   separator = true,
   visor = true,
@@ -87,7 +92,9 @@ const PanelHeader: React.FC<PanelHeaderProps> = ({
   const needShadow = shadow && sizeX === SizeType.REGULAR;
   let isFixed = fixed !== undefined ? fixed : platform !== Platform.VKCOM;
 
-  const innerProps = { children, left, right };
+  const after = propsAfter ?? right;
+
+  const innerProps = { children, left, after };
 
   return (
     <div
@@ -103,7 +110,7 @@ const PanelHeader: React.FC<PanelHeaderProps> = ({
           "PanelHeader--vkapps":
             webviewType === WebviewType.VKAPPS && !isInsideModal,
           "PanelHeader--no-left": !left,
-          "PanelHeader--no-right": !right,
+          "PanelHeader--no-after": !after,
           "PanelHeader--fixed": isFixed,
         },
         `PanelHeader--sizeX-${sizeX}`
