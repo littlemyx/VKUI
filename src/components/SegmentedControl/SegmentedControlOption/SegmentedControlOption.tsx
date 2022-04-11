@@ -3,7 +3,7 @@ import { useFocusVisible } from "../../../hooks/useFocusVisible";
 import { callMultiple } from "../../../lib/callMultiple";
 import { classNames } from "../../../lib/classNames";
 import { FocusVisible } from "../../FocusVisible/FocusVisible";
-import Text from "../../Typography/Text/Text";
+import { Text } from "../../Typography/Text/Text";
 import {
   VisuallyHiddenInput,
   VisuallyHiddenInputProps,

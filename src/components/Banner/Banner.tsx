@@ -15,8 +15,8 @@ import Tappable from "../Tappable/Tappable";
 import IconButton from "../IconButton/IconButton";
 import Headline from "../Typography/Headline/Headline";
 import { Subhead } from "../Typography/Subhead/Subhead";
-import Text from "../Typography/Text/Text";
 import { Title } from "../Typography/Title/Title";
+import { Text } from "../Typography/Text/Text";
 import "./Banner.css";
 
 export interface BannerProps extends React.HTMLAttributes<HTMLDivElement> {

@@ -11,7 +11,7 @@ import {
 import { usePlatform } from "../../hooks/usePlatform";
 import { getClassName } from "../../helpers/getClassName";
 import Headline from "../Typography/Headline/Headline";
-import Text from "../Typography/Text/Text";
+import { Text } from "../Typography/Text/Text";
 import { VKCOM } from "../../lib/platform";
 import { SelectType } from "../CustomSelect/CustomSelect";
 import "../Select/Select.css";
