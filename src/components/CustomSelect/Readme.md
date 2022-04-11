@@ -225,7 +225,6 @@ class Example extends React.Component {
                             padding: 12,
                             color: "var(--text_secondary)",
                           }}
-                          weight="regular"
                         >
                           Нужно ввести хотя бы три символа
                         </Text>

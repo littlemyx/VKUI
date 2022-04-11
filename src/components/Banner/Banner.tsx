@@ -94,17 +94,6 @@ const BannerHeader: React.FC<BannerTypographyProps> = ({
   );
 };
 
-const BannerSubheader: React.FC<BannerTypographyProps> = ({
-  size,
-  ...restProps
-}) => {
-  return size === "m" ? (
-    <Text weight="regular" {...restProps} />
-  ) : (
-    <Subhead {...restProps} />
-  );
-};
-
 const Banner: React.FC<BannerProps> = (props: BannerProps) => {
   const platform = usePlatform();
   const {
@@ -123,6 +112,8 @@ const Banner: React.FC<BannerProps> = (props: BannerProps) => {
     dismissLabel,
     ...restProps
   } = props;
+
+  const SubheaderTypographyComponent = size === "m" ? Text : Subhead;
 
   return (
     <section
@@ -162,19 +153,14 @@ const Banner: React.FC<BannerProps> = (props: BannerProps) => {
             </BannerHeader>
           )}
           {hasReactNode(subheader) && (
-            <BannerSubheader
+            <SubheaderTypographyComponent
               Component="span"
-              size={size}
               vkuiClass="Banner__subheader"
             >
               {subheader}
-            </BannerSubheader>
+            </SubheaderTypographyComponent>
           )}
-          {hasReactNode(text) && (
-            <Text weight="regular" vkuiClass="Banner__text">
-              {text}
-            </Text>
-          )}
+          {hasReactNode(text) && <Text vkuiClass="Banner__text">{text}</Text>}
           {hasReactNode(actions) && React.Children.count(actions) > 0 && (
             <div vkuiClass="Banner__actions">{actions}</div>
           )}

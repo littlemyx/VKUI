@@ -34,7 +34,7 @@ export const SegmentedControlOption: React.FC<VisuallyHiddenInputProps> = ({
         onBlur={callMultiple(onBlur, restProps.onBlur)}
         onFocus={callMultiple(onFocus, restProps.onFocus)}
       />
-      <Text vkuiClass="SegmentedControlOption__content" weight="medium">
+      <Text vkuiClass="SegmentedControlOption__content" weight="2">
         {children}
       </Text>
       <FocusVisible mode="inside" />

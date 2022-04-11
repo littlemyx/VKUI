@@ -29,6 +29,7 @@ const TabsItem: React.FC<TabsItemProps> = ({
     mode === "buttons" || mode === "segmented" ? Subhead : Headline;
 
   if (platform === VKCOM) {
+    // @ts-ignore TODO убрать после перевода Headline на токены
     TypographyComponent = Text;
   }
 
