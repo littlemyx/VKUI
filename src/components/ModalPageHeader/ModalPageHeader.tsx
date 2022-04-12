@@ -15,7 +15,7 @@ export interface ModalPageHeaderProps
     Omit<PanelHeaderProps, "fixed" | "shadow">,
     HasRef<HTMLDivElement> {}
 
-const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
+export const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
   children,
   separator = true,
   getRef,
@@ -49,6 +49,3 @@ const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
     </div>
   );
 };
-
-// eslint-disable-next-line import/no-default-export
-export default ModalPageHeader;
