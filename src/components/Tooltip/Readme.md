@@ -73,7 +73,7 @@ class Example extends React.Component {
 
         <Panel id="tooltip2">
           <PanelHeader
-            left={
+            before={
               <PanelHeaderButton
                 onClick={() => this.setState({ activePanel: "tooltip" })}
               >
@@ -85,7 +85,7 @@ class Example extends React.Component {
                 )}
               </PanelHeaderButton>
             }
-            right={
+            after={
               <PanelHeaderButton>
                 <Tooltip
                   isShown={this.state.tooltip2}
