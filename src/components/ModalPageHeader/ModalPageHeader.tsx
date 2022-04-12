@@ -17,7 +17,7 @@ export interface ModalPageHeaderProps
 
 const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
   children,
-  separator,
+  separator = true,
   getRef,
   ...restProps
 }) => {
@@ -48,10 +48,6 @@ const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
       {hasSeparator && <Separator wide />}
     </div>
   );
-};
-
-ModalPageHeader.defaultProps = {
-  separator: true,
 };
 
 // eslint-disable-next-line import/no-default-export
