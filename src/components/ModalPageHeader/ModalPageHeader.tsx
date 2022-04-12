@@ -15,12 +15,12 @@ export interface ModalPageHeaderProps
     Omit<PanelHeaderProps, "fixed" | "shadow">,
     HasRef<HTMLDivElement> {}
 
-const ModalPageHeader: React.FunctionComponent<ModalPageHeaderProps> = ({
+const ModalPageHeader: React.FC<ModalPageHeaderProps> = ({
   children,
   separator,
   getRef,
   ...restProps
-}: ModalPageHeaderProps) => {
+}) => {
   const platform = usePlatform();
   const { viewWidth, viewHeight, hasMouse } = useAdaptivity();
   const hasSeparator = separator && platform === VKCOM;
