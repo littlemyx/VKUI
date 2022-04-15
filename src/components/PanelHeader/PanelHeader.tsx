@@ -77,11 +77,13 @@ const PanelHeaderIn: React.FC<PanelHeaderProps> = ({
 
 const warn = warnOnce("PanelHeader");
 const PanelHeader: React.FC<PanelHeaderProps> = ({
+  // TODO: поправить перед 5.0.0
   before: propsBefore,
   left,
-  children,
   after: propsAfter,
   right,
+  // /end TODO
+  children,
   separator = true,
   visor = true,
   transparent = false,
