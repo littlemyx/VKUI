@@ -44,9 +44,7 @@ const SelectMimicry: React.FC<SelectMimicryProps> = ({
   ...restProps
 }) => {
   const platform = usePlatform();
-
-  const TypographyComponent =
-    platform === VKCOM || sizeY === SizeType.COMPACT ? Text : Headline;
+  const title = children || placeholder;
 
   return (
     <FormField
@@ -70,16 +68,28 @@ const SelectMimicry: React.FC<SelectMimicryProps> = ({
       disabled={disabled}
       after={after}
     >
-      <TypographyComponent
-        Component="div"
-        weight={selectType === SelectType.Plain ? "semibold" : "regular"}
+      <div
         vkuiClass={classNames(
           "Select__container",
           `Select__container--${selectType}`
         )}
       >
-        <span vkuiClass="Select__title">{children || placeholder}</span>
-      </TypographyComponent>
+        {platform === VKCOM || sizeY === SizeType.COMPACT ? (
+          <Text
+            weight={selectType === SelectType.Plain ? "2" : undefined}
+            vkuiClass="Select__title"
+          >
+            {title}
+          </Text>
+        ) : (
+          <Headline
+            weight={selectType === SelectType.Plain ? "semibold" : "regular"}
+            vkuiClass="Select__title"
+          >
+            {title}
+          </Headline>
+        )}
+      </div>
     </FormField>
   );
 };
