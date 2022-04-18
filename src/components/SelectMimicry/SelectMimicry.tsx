@@ -29,7 +29,7 @@ export interface SelectMimicryProps
 }
 
 const SelectMimicry: React.FunctionComponent<SelectMimicryProps> = ({
-  tabIndex,
+  tabIndex = 0,
   placeholder,
   children,
   align,
@@ -82,10 +82,6 @@ const SelectMimicry: React.FunctionComponent<SelectMimicryProps> = ({
       </TypographyComponent>
     </FormField>
   );
-};
-
-SelectMimicry.defaultProps = {
-  tabIndex: 0,
 };
 
 // eslint-disable-next-line import/no-default-export
