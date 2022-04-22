@@ -10,7 +10,7 @@ import {
   CustomSelectOptionProps,
 } from "../CustomSelectOption/CustomSelectOption";
 import { getClassName } from "../../helpers/getClassName";
-import { FormFieldProps } from "../FormField/FormField";
+import { FormFieldMode, FormFieldProps } from "../FormField/FormField";
 import { HasPlatform } from "../../types";
 import { Input } from "../Input/Input";
 import { DropdownIcon } from "../DropdownIcon/DropdownIcon";
@@ -714,6 +714,11 @@ class CustomSelectComponent extends React.Component<
             onClick={onClick}
             after={icon}
             placeholder={restProps.placeholder}
+            mode={
+              selectType === SelectType.Default
+                ? FormFieldMode.DEFAULT
+                : FormFieldMode.PLAIN
+            }
           />
         ) : (
           <SelectMimicry

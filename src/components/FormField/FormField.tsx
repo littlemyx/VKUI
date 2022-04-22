@@ -7,11 +7,17 @@ import { hasReactNode } from "../../lib/utils";
 import { useAdaptivity } from "../../hooks/useAdaptivity";
 import "./FormField.css";
 
+export enum FormFieldMode {
+  DEFAULT = "default",
+  PLAIN = "plain",
+}
+
 export interface FormFieldProps {
   /**
    * Иконка 12|16|20|24|28 или `IconButton`.
    */
   after?: React.ReactNode;
+  mode?: FormFieldMode;
 }
 
 interface FormFieldOwnProps
@@ -28,6 +34,7 @@ export const FormField: React.FC<FormFieldOwnProps> = ({
   getRootRef,
   after,
   disabled,
+  mode = FormFieldMode.DEFAULT,
   ...restProps
 }: FormFieldOwnProps) => {
   const platform = usePlatform();
@@ -53,6 +60,7 @@ export const FormField: React.FC<FormFieldOwnProps> = ({
       onMouseLeave={handleMouseLeave}
       vkuiClass={classNames(
         getClassName("FormField", platform),
+        `FormField--${mode}`,
         `FormField--sizeY-${sizeY}`,
         disabled && "FormField--disabled"
       )}

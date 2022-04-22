@@ -1,7 +1,7 @@
 import * as React from "react";
 import { classNames } from "../../lib/classNames";
 import { DropdownIcon } from "../DropdownIcon/DropdownIcon";
-import { FormField } from "../FormField/FormField";
+import { FormField, FormFieldMode } from "../FormField/FormField";
 import { HasAlign, HasRootRef } from "../../types";
 import {
   withAdaptivity,
@@ -66,6 +66,11 @@ const SelectMimicryComponent: React.FC<SelectMimicryProps> = ({
       onClick={disabled ? undefined : onClick}
       disabled={disabled}
       after={after}
+      mode={
+        selectType === SelectType.Default
+          ? FormFieldMode.DEFAULT
+          : FormFieldMode.PLAIN
+      }
     >
       <TypographyComponent
         Component="div"
