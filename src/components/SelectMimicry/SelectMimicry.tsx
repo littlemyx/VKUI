@@ -15,7 +15,6 @@ import Text from "../Typography/Text/Text";
 import { VKCOM } from "../../lib/platform";
 import { SelectType } from "../Select/Select";
 import "../Select/Select.css";
-import "./SelectMimicry.css";
 
 export interface SelectMimicryProps
   extends React.HTMLAttributes<HTMLElement>,
@@ -54,7 +53,7 @@ const SelectMimicryComponent: React.FC<SelectMimicryProps> = ({
       tabIndex={disabled ? undefined : tabIndex}
       vkuiClass={classNames(
         getClassName("Select", platform),
-        `Select--mimicry-${selectType}`,
+        `Select--${selectType}`,
         !children && "Select--empty",
         multiline && "Select--multiline",
         align && `Select--align-${align}`,
