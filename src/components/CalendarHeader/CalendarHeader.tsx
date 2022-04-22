@@ -8,8 +8,7 @@ import {
 import Tappable from "../Tappable/Tappable";
 import { classNames } from "../../lib/classNames";
 import { SelectType } from "../Select/Select";
-import { CustomSelect, CustomSelectProps } from "../CustomSelect/CustomSelect";
-import { CustomSelectOption } from "../CustomSelectOption/CustomSelectOption";
+import { CustomSelect } from "../CustomSelect/CustomSelect";
 import { SizeType } from "../../hoc/withAdaptivity";
 import { getMonths, getYears } from "../../lib/calendar";
 import { LocaleProviderContext } from "../LocaleProviderContext/LocaleProviderContext";
@@ -30,18 +29,6 @@ export interface CalendarHeaderProps
   onNextMonth?(): void;
   onPrevMonth?(): void;
 }
-
-const renderOption: CustomSelectProps["renderOption"] = ({
-  option,
-  children,
-  ...props
-}) => {
-  return (
-    <CustomSelectOption {...props}>
-      <span vkuiClass="CalendarHeader__month_name">{children}</span>
-    </CustomSelectOption>
-  );
-};
 
 export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
   viewDate,
@@ -69,7 +56,15 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
     [onChange, viewDate]
   );
 
-  const months = React.useMemo(() => getMonths(locale), [locale]);
+  const months = React.useMemo(
+    () =>
+      getMonths(locale).map((month) =>
+        Object.assign({}, month, {
+          label: <span vkuiClass="CalendarHeader__month">{month.label}</span>,
+        })
+      ),
+    [locale]
+  );
 
   const currentYear = viewDate.getFullYear();
 
@@ -99,18 +94,12 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
       <div vkuiClass="CalendarHeader__pickers">
         {disablePickers ? (
           <React.Fragment>
-            <Paragraph
-              weight="2"
-              vkuiClass="CalendarHeader__pickers-placeholder"
-            >
+            <Paragraph weight="2" vkuiClass="CalendarHeader__month">
               {new Intl.DateTimeFormat(locale, {
                 month: "long",
               }).format(viewDate)}
             </Paragraph>
-            <Paragraph
-              weight="2"
-              vkuiClass="CalendarHeader__pickers-placeholder"
-            >
+            <Paragraph weight="2" vkuiClass="CalendarHeader__month">
               {new Intl.DateTimeFormat(locale, {
                 year: "numeric",
               }).format(viewDate)}
@@ -119,19 +108,20 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
         ) : (
           <React.Fragment>
             <CustomSelect
+              vkuiClass="CalendarHeader__picker"
               value={viewDate.getMonth()}
               options={months}
-              renderOption={renderOption}
               dropdownOffsetDistance={4}
               fixDropdownWidth={false}
               sizeY={SizeType.COMPACT}
               icon={<Icon12Dropdown />}
               onChange={onMonthsChange}
               forceDropdownPortal={false}
-              selectType={SelectType.Plain}
+              selectType={SelectType.Accent}
               aria-label={changeMonthAriaLabel}
             />
             <CustomSelect
+              vkuiClass="CalendarHeader__picker"
               value={viewDate.getFullYear()}
               options={years}
               dropdownOffsetDistance={4}
@@ -140,7 +130,7 @@ export const CalendarHeader: React.FC<CalendarHeaderProps> = ({
               icon={<Icon12Dropdown />}
               onChange={onYearChange}
               forceDropdownPortal={false}
-              selectType={SelectType.Plain}
+              selectType={SelectType.Accent}
               aria-label={changeYearAriaLabel}
             />
           </React.Fragment>
