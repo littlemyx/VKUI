@@ -20,6 +20,7 @@ import { defaultFilterFn } from "../../lib/select";
 import { is } from "../../lib/is";
 import { Placement } from "../Popper/Popper";
 import { CustomSelectDropdown } from "../CustomSelectDropdown/CustomSelectDropdown";
+import { SelectType } from "../Select/Select";
 import "./CustomSelect.css";
 
 const findIndexAfter = (
@@ -63,11 +64,6 @@ const checkOptionsValueType = (options: CustomSelectOptionInterface[]) => {
 };
 
 type SelectValue = React.SelectHTMLAttributes<HTMLSelectElement>["value"];
-
-export enum SelectType {
-  Default = "default",
-  Plain = "plain",
-}
 
 export interface CustomSelectOptionInterface {
   value: SelectValue;
