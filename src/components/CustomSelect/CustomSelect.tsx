@@ -162,7 +162,9 @@ class CustomSelectComponent extends React.Component<
     icon: <DropdownIcon />,
     dropdownOffsetDistance: 0,
     fixDropdownWidth: true,
-    selectType: SelectType.Default,
+    // TODO без текстового "default" валится сборка styleguide
+    //      и скриншотные тесты, хорошо бы починить
+    selectType: "default" as SelectType.Default,
   };
 
   public constructor(props: CustomSelectProps) {
