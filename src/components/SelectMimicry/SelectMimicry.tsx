@@ -3,17 +3,10 @@ import { classNames } from "../../lib/classNames";
 import { DropdownIcon } from "../DropdownIcon/DropdownIcon";
 import { FormField, FormFieldMode } from "../FormField/FormField";
 import { HasAlign, HasRootRef } from "../../types";
-import {
-  withAdaptivity,
-  AdaptivityProps,
-  SizeType,
-} from "../../hoc/withAdaptivity";
+import { withAdaptivity, AdaptivityProps } from "../../hoc/withAdaptivity";
 import { usePlatform } from "../../hooks/usePlatform";
 import { getClassName } from "../../helpers/getClassName";
-import Headline from "../Typography/Headline/Headline";
-import Text from "../Typography/Text/Text";
-import { VKCOM } from "../../lib/platform";
-import { SelectType } from "../Select/Select";
+import { SelectType, SelectTypography } from "../Select/Select";
 import "../Select/Select.css";
 
 export interface SelectMimicryProps
@@ -43,9 +36,7 @@ const SelectMimicryComponent: React.FC<SelectMimicryProps> = ({
   ...restProps
 }) => {
   const platform = usePlatform();
-
-  const TypographyComponent =
-    platform === VKCOM || sizeY === SizeType.COMPACT ? Text : Headline;
+  const title = children || placeholder;
 
   return (
     <FormField
@@ -70,16 +61,11 @@ const SelectMimicryComponent: React.FC<SelectMimicryProps> = ({
           : FormFieldMode.PLAIN
       }
     >
-      <TypographyComponent
-        Component="div"
-        weight={selectType === SelectType.Plain ? "semibold" : "regular"}
-        vkuiClass={classNames(
-          "Select__container",
-          `Select__container--${selectType}`
-        )}
-      >
-        <span vkuiClass="Select__title">{children || placeholder}</span>
-      </TypographyComponent>
+      <div vkuiClass="Select__container">
+        <SelectTypography selectType={selectType} vkuiClass="Select__title">
+          {title}
+        </SelectTypography>
+      </div>
     </FormField>
   );
 };
