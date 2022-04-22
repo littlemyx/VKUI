@@ -20,15 +20,9 @@ export enum SelectType {
   Accent = "accent",
 }
 
-interface SelectTypographyProps {
-  selectType?: SelectType;
-}
-
-export const SelectTypography: React.FC<SelectTypographyProps> = ({
-  selectType = SelectType.Default,
-  children,
-  ...restProps
-}) => {
+export const SelectTypography: React.FC<
+  Pick<CustomSelectProps, "selectType">
+> = ({ selectType = SelectType.Default, children, ...restProps }) => {
   const platform = usePlatform();
   const { sizeY } = useAdaptivity();
 
