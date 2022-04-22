@@ -28,7 +28,7 @@ export const SelectTypography: React.FC<
 
   if (selectType === SelectType.Accent) {
     return (
-      <Paragraph weight={platform === VKCOM ? "1" : "2"} {...restProps}>
+      <Paragraph weight="2" {...restProps}>
         {children}
       </Paragraph>
     );
